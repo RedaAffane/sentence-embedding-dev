@@ -1,5 +1,5 @@
 PLUGIN_VERSION=1.2.0
-PLUGIN_ID=sentence-embedding
+PLUGIN_ID=sentence-embedding-dev
 
 plugin:
 	cat plugin.json|json_pp > /dev/null
