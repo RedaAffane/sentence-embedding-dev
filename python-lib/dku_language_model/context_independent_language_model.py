@@ -22,7 +22,10 @@ class ContextIndependentLanguageModel(AbstractLanguageModel):
 
     def compute_average_embedding(self, text):
         embeddings = self.get_sentence_word_vectors(text)
-        avg_embedding = np.mean(embeddings, axis=0)
+        try:
+            avg_embedding = np.mean(embeddings, axis=0)
+        except:
+            logger.info("**** ERROR: Could not compute average for test: {}, with embedding vector {}\n".format(text,embeddings))
         if np.isnan(sum(avg_embedding)):
             return np.nan
         else:
