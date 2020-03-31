@@ -21,15 +21,15 @@ class ContextIndependentLanguageModel(AbstractLanguageModel):
         return self.embedding_matrix[indices]
 
     def compute_average_embedding(self, text):
-        embeddings = self.get_sentence_word_vectors(text)
-        try:
-            avg_embedding = np.mean(embeddings, axis=0)
-        except:
-            logger.info("**** ERROR: Could not compute average for test: {}, with embedding vector {}\n".format(text,embeddings))
-        if np.isnan(sum(avg_embedding)):
+        if len(text) == 0:
             return np.nan
-        else:
-            return avg_embedding.tolist()
+        else:           
+            embeddings = self.get_sentence_word_vectors(text)
+            avg_embedding = np.mean(embeddings, axis=0)
+            if np.isnan(sum(avg_embedding)):
+                return np.nan
+            else:
+                return avg_embedding.tolist()
         
     def get_sentence_embedding(self, texts):
         cleaned_texts = map(clean_text, texts)
