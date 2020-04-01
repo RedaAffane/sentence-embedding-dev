@@ -78,7 +78,7 @@ for name in text_column_names:
         new_column_name += "_{}".format(j)
 
     # Adding a new column with computed embeddings
-    df[new_column_name] = map(json.dumps, embedded_texts)
+    df[new_column_name] = list(map(json.dumps, embedded_texts))
     df[new_column_name] = df[new_column_name].replace('NaN', np.nan) # for doctor
 
 logger.info("Computed sentence embeddings.")
