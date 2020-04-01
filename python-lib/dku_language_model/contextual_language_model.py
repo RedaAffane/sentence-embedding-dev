@@ -72,8 +72,10 @@ class UniversalSentenceEncoderModel(ContextualLanguageModel):
     
     def get_sentence_embedding(self, texts):
         cleaned_texts = list(map(clean_text, texts))
-        embedded_sentences = self.model(cleaned_texts)
-        return np.array(embedded_sentences,dtype = np.float32)
+        embedded_sentences = []
+        for text in texts_clean:
+            embedded_sentences.append(self.model([text]).numpy().tolist())
+        return embedded_sentences
         
     def get_weighted_sentence_embedding(self, texts, smoothing_parameter, npc):
         # for contextual embedding, weights are already integrated in the computation
