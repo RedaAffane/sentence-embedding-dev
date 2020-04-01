@@ -73,7 +73,7 @@ class UniversalSentenceEncoderModel(ContextualLanguageModel):
     def get_sentence_embedding(self, texts):
         cleaned_texts = list(map(clean_text, texts))
         embedded_sentences = []
-        for text in texts_clean:
+        for text in cleaned_texts:
             embedded_sentences.append(self.model([text]).numpy().tolist())
         return embedded_sentences
         
