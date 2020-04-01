@@ -7,11 +7,11 @@ maketrans = string.maketrans
 logger = logging.getLogger(__name__)
 
 # Twitter related tokens
-RE_HASHTAG = ur'#[a-zA-Z0-9_]+'
-RE_MENTION = ur'@[a-zA-Z0-9_]+'
+RE_HASHTAG = ur"#[a-zA-Z0-9_]+"
+RE_MENTION = ur"@[a-zA-Z0-9_]+"
 
-RE_URL = ur'(?:https?://|www\.)(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-RE_EMAIL = ur'\b[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\b'
+RE_URL = ur"(?:https?://|www\.)(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+RE_EMAIL = ur"\b[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\b"
 
 TOKENS_TO_IGNORE = [
     RE_HASHTAG,
