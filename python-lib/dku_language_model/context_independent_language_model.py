@@ -3,8 +3,8 @@ import numpy as np
 from collections import Counter
 from gensim.models import KeyedVectors
 from sklearn.decomposition import TruncatedSVD
-from abstract_language_model import AbstractLanguageModel
-from language_model_utils import clean_text
+from .abstract_language_model import AbstractLanguageModel
+from .language_model_utils import clean_text
 import logging
 logger = logging.getLogger(__name__)
 
