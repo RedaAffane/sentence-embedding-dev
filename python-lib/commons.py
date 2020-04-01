@@ -2,7 +2,7 @@
 import os
 import logging
 from dku_language_model.context_independent_language_model import FasttextModel, Word2vecModel, GloveModel, CustomModel
-from dku_language_model.contextual_language_model import ElmoModel
+from dku_language_model.contextual_language_model import ElmoModel, UniversalSentenceEncoderModel
 
 import string
 maketrans = string.maketrans
@@ -43,6 +43,8 @@ def load_pretrained_model(path, embedding_is_custom=False):
             model = Word2vecModel(embedding_file_path)
         elif embedding_file == "ELMo":
             model = ElmoModel(embedding_file_path)
+        elif embedding_file == "UniversalSentenceEncoder_embeddings":
+            model = UniversalSentenceEncoderModel(embedding_file_path)    
         else:
             raise ValueError("Something is wrong with the pre-trained embeddings. " +
                              "Please make sure to either use the plugin macro to download the embeddings, " +
