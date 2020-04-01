@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
 from abstract_language_model import AbstractLanguageModel
@@ -72,7 +73,7 @@ class UniversalSentenceEncoderModel(ContextualLanguageModel):
     def get_sentence_embedding(self, texts):
         cleaned_texts = map(clean_text, texts)
         embedded_sentences = self.model(cleaned_texts)
-        return embedded_sentences
+        return np.array(embedded_sentences,dtype = np.float32)
         
     def get_weighted_sentence_embedding(self, texts, smoothing_parameter, npc):
         # for contextual embedding, weights are already integrated in the computation
