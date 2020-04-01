@@ -54,7 +54,7 @@ def clean_text(text):
         translate_map = dict((ord(c), str(split)) for c in filters)
         text = text.translate(translate_map)
     elif len(split) == 1:
-        translate_map = string.maketrans(filters, split * len(filters))
+        translate_map = str.maketrans(filters, split * len(filters))
         text = text.translate(translate_map)
     else:
         for c in filters:
