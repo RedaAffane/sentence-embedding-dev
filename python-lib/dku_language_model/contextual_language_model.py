@@ -3,8 +3,8 @@ import os
 import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
-from abstract_language_model import AbstractLanguageModel
-from language_model_utils import clean_text
+from .abstract_language_model import AbstractLanguageModel
+from .language_model_utils import clean_text
 import logging
 logger = logging.getLogger(__name__)
 
