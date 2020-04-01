@@ -71,7 +71,7 @@ class UniversalSentenceEncoderModel(ContextualLanguageModel):
         self.model = hub.KerasLayer("https://tfhub.dev/google/universal-sentence-encoder/4")
     
     def get_sentence_embedding(self, texts):
-        cleaned_texts = map(clean_text, texts)
+        cleaned_texts = list(map(clean_text, texts))
         embedded_sentences = self.model(cleaned_texts)
         return np.array(embedded_sentences,dtype = np.float32)
         
