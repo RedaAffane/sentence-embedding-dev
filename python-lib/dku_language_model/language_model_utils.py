@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
-import string
 import re
 import numpy as np
-maketrans = string.maketrans
+maketrans = str.maketrans
 logger = logging.getLogger(__name__)
 
 # Twitter related tokens
@@ -51,8 +50,8 @@ def clean_text(text):
     filters = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n'
     split = " "  # character that will be used to split the texts later
 
-    if isinstance(text, unicode):
-        translate_map = dict((ord(c), unicode(split)) for c in filters)
+    if isinstance(text, str):
+        translate_map = dict((ord(c), str(split)) for c in filters)
         text = text.translate(translate_map)
     elif len(split) == 1:
         translate_map = string.maketrans(filters, split * len(filters))
