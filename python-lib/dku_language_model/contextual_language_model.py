@@ -25,7 +25,7 @@ class ElmoModel(ContextualLanguageModel):
         # Set path for loading the pre-trained ELMo model
         os.environ["TFHUB_CACHE_DIR"] = os.path.join(self.model_path)
         logger.info("Initializing ELMo...")
-        self.model = hub.Module("https://tfhub.dev/google/elmo/2", trainable=True)
+        self.model = hub.KerasLayer("https://tfhub.dev/google/elmo/3", trainable=True)
         # Initialize the model
         self.sess = tf.Session()
         self.sess.run(tf.global_variables_initializer())
@@ -53,6 +53,27 @@ class ElmoModel(ContextualLanguageModel):
             embedded_sentences.extend(embeddings.tolist())
         return embedded_sentences
 
+    def get_weighted_sentence_embedding(self, texts, smoothing_parameter, npc):
+        # for contextual embedding, weights are already integrated in the computation
+        return self.get_sentence_embedding(texts)
+
+class UniversalSentenceEncoderModel(ContextualLanguageModel):
+    
+    @staticmethod
+    def get_model_name():
+        return 'Universal Sentence Encoder model'
+    
+    def load_model(self):
+        # Set path for loading the pre-trained ELMo model
+        os.environ["TFHUB_CACHE_DIR"] = os.path.join(self.model_path)
+        logger.info("Initializing Universal Sentence Encoder...")
+        self.model = hub.KerasLayer("https://tfhub.dev/google/universal-sentence-encoder/4")
+    
+    def get_sentence_embedding(self, texts):
+        cleaned_texts = map(clean_text, texts)
+        embedded_sentences = self.model(cleaned_texts)
+        return embedded_sentences
+        
     def get_weighted_sentence_embedding(self, texts, smoothing_parameter, npc):
         # for contextual embedding, weights are already integrated in the computation
         return self.get_sentence_embedding(texts)
